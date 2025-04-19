@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 1</title>
+</head>
+<body>
+  <h2>Nhập điểm trung bình của sinh viên</h2>
+  <input type="number" id="diem" min="0" max="10" step="0.01" placeholder="Nhập điểm từ 0 đến 10">
+  <br>
+  <button onclick="xepLoai()">Xếp loại</button>
+  <div id="result"></div>
+  <script>
+    const xepLoaiData = [
+      { check: d => d >= 9 && d <= 10, loai: "Xuất sắc" },
+      { check: d => d >= 7 && d <= 8.9, loai: "Khá" },
+      { check: d => d >= 5 && d <= 6.9, loai: "Trung bình" },
+      { check: d => d >= 0 && d <= 4.9, loai: "Yếu" }
+    ];
+    function xepLoai() {
+      const diem = parseFloat(document.getElementById('diem').value);
+      const loai = isNaN(diem) || diem < 0 || diem > 10
+        ? "Vui lòng nhập điểm hợp lệ từ 0 đến 10."
+        : "Xếp loại: " + xepLoaiData.find(item => item.check(diem)).loai;
+      document.getElementById('result').innerText = loai;
+    }
+  </script>
+
+</body>
+</html>
